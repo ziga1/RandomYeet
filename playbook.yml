@@ -1,7 +1,7 @@
 ---
 - name: Install Apache2 and copy index.html
   become: true
-
+  hosts: vm-hosts
   tasks:
     - name: Update apt cache
       apt:
