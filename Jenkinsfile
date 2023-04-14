@@ -13,8 +13,8 @@ pipeline {
     stage('Deploy Apache to VM') {
       steps {
         ansiblePlaybook(
-          playbook: '${WORKSPACE}/RandomYeet/playbook.yml',
-          inventory: '${WORKSPACE}/RandomYeet/hosts',
+          playbook: '${WORKSPACE}/playbook.yml',
+          inventory: '${WORKSPACE}/hosts',
           extras: '-vvv'
         )
       }
