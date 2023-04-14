@@ -14,5 +14,5 @@
 
     - name: Copy index.html
       copy:
-        src: "{{ WORKSPACE }}/RandomYeet/index.html"
+        src: "{{ WORKSPACE }}/index.html"
         dest: /var/www/html/index.html
