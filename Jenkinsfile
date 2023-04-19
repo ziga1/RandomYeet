@@ -53,6 +53,7 @@ pipeline {
         ansiblePlaybook(
           playbook: '${WORKSPACE}/playbook.yml',
           inventory: '${WORKSPACE}/hosts',
+          sshKey: '/var/lib/jenkins/.ssh/id_rsa',
           extras: '-vvv'
         )
       }
