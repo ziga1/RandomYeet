@@ -57,7 +57,7 @@ pipeline {
         )
       }
     }
-    stage('Clean up Current Certificates') {
+    stage('Jenkins Clean Up') {
       steps {
         sh '''
       if [ -f /var/lib/jenkins/workspace/${Github}/id_rsa ]; then
@@ -74,6 +74,10 @@ pipeline {
       
       if [ -f /var/lib/jenkins/.ssh/id_rsa ]; then
         rm /var/lib/jenkins/.ssh/id_rsa
+      fi
+      
+      if [ -f /var/lib/jenkins/.ssh/ssh-copy-id.* ]; then
+        rm /var/lib/jenkins/.ssh/ssh-copy-id.*
       fi
     '''
       }
