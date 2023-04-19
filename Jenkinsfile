@@ -13,7 +13,7 @@ pipeline {
     }
    stage('Test') {
      steps {
-       echo "bla bla"
+       sh 'echo ${Hostname}'
       }
     }
   }
