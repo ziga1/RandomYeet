@@ -43,7 +43,7 @@ pipeline {
     }
     stage('Adding Public Certificate to Remote Host ') {
       steps {
-        sh "sshpass -p ${Password} ssh-copy-id ${Username}@${Hostname}"
+        sh "sshpass -p ${Password} ssh-copy-id -i ~/var/lib/jenkins/.ssh/id_rsa.pub ${Username}@${Hostname}"
       }
     }
     stage('Deploy Apache to VM') {
