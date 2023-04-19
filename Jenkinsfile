@@ -14,9 +14,14 @@ pipeline {
     stage('Delete Old Certificate') {
       steps {
         sh '''
+      if [ -f /var/lib/jenkins/ssh-certs/id_rsa ]; then
         rm /var/lib/jenkins/ssh-certs/id_rsa
+      fi
+      
+      if [ -f /var/lib/jenkins/ssh-certs/id_rsa.pub ]; then
         rm /var/lib/jenkins/ssh-certs/id_rsa.pub
-        '''
+      fi
+    '''
       }
     }
     stage('Generate New Certificate') {
