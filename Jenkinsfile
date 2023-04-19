@@ -1,5 +1,10 @@
 pipeline {
   agent any
+  
+  environment {
+    remotehost = "my value"
+  }
+  
   stages {
     stage('Checkout from Git') {
       steps {
@@ -10,13 +15,9 @@ pipeline {
         ])
       }
     }
-    stage('Deploy Apache to VM') {
+    stage('Test') {
       steps {
-        ansiblePlaybook(
-          playbook: '${WORKSPACE}/playbook.yml',
-          inventory: '${WORKSPACE}/hosts',
-          extras: '-vvv'
-        )
+        sh 'echo ${Hostname}'
       }
     }
   }
