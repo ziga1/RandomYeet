@@ -75,9 +75,7 @@ pipeline {
         rm /var/lib/jenkins/.ssh/id_rsa
       fi
       
-      if [ -f /var/lib/jenkins/.ssh/ssh-copy-id.* ]; then
-        rm /var/lib/jenkins/.ssh/ssh-copy-id.*
-      fi
+      deleteFile file: '/var/lib/jenkins/.ssh/ssh-copy-id.*'
     '''
       }
     }
