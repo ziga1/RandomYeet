@@ -52,8 +52,7 @@ pipeline {
       steps {
         ansiblePlaybook(
           playbook: '${WORKSPACE}/playbook.yml',
-          inventory: '${WORKSPACE}/hosts',
-          extras: '-vvv',
+          inventory: '${WORKSPACE}/hosts'
         )
       }
     }
