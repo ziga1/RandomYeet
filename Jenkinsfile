@@ -48,9 +48,13 @@ pipeline {
         sshpass -p ${Password} ssh-copy-id -i ~/.ssh/id_rsa.pub ${Username}@${Hostname}'''
       }
     }
-    stage('Deploy Apache to VM') {
+    stage('Deploy Apache to Remote VM') {
       steps {
-        sh 'yay'
+        ansiblePlaybook(
+          playbook: '${WORKSPACE}/playbook.yml',
+          inventory: '${WORKSPACE}/hosts',
+          extras: '-vvv'
+        )
       }
     }
   }
