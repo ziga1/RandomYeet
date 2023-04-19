@@ -75,7 +75,7 @@ pipeline {
         rm /var/lib/jenkins/.ssh/id_rsa
       fi
       
-      sh 'rm /var/lib/jenkins/.ssh/ssh-copy-id.*'
+      sh 'rm /var/lib/jenkins/.ssh/ssh-copy-id*'
     '''
       }
     }
