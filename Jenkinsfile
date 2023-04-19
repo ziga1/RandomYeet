@@ -42,28 +42,5 @@ pipeline {
         )
       }
     }
-    stage('Jenkins Clean Up') {
-      steps {
-        sh '''
-      if [ -f /var/lib/jenkins/workspace/${Github}/id_rsa ]; then
-        rm /var/lib/jenkins/workspace/${Github}/id_rsa
-      fi
-      
-      if [ -f /var/lib/jenkins/workspace/${Github}/id_rsa.pub ]; then
-        rm /var/lib/jenkins/workspace/${Github}/id_rsa.pub
-      fi
-      
-      if [ -f /var/lib/jenkins/.ssh/id_rsa.pub ]; then
-        rm /var/lib/jenkins/.ssh/id_rsa.pub
-      fi
-      
-      if [ -f /var/lib/jenkins/.ssh/id_rsa ]; then
-        rm /var/lib/jenkins/.ssh/id_rsa
-      fi
-      
-      rm -r ~/.ssh/ssh-copy-id.*
-    '''
-      }
-    }
   }
 }
