@@ -29,3 +29,7 @@
         owner: root
         group: root
         mode: '0644'
+    - name: Restart sshd service
+      ansible.builtin.service:
+        name: sshd
+        state: restarted
