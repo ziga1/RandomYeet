@@ -23,7 +23,6 @@ pipeline {
           }
         }
       }
-    }
     
     stage('Generate New Certificate') {
       steps {
