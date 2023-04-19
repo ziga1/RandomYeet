@@ -14,14 +14,6 @@ pipeline {
     stage('Delete Old Certificate') {
       steps {
         sh '''
-      if [ -f /var/lib/jenkins/ssh-certs/id_rsa ]; then
-        rm /var/lib/jenkins/ssh-certs/id_rsa
-      fi
-      
-      if [ -f /var/lib/jenkins/ssh-certs/id_rsa.pub ]; then
-        rm /var/lib/jenkins/ssh-certs/id_rsa.pub
-      fi
-      
       if [ -f /var/lib/jenkins/workspace/${Github}/id_rsa ]; then
         rm /var/lib/jenkins/workspace/${Github}/id_rsa
       fi
@@ -37,10 +29,6 @@ pipeline {
         sh '''
           # Generate a new SSH RSA key pair
           ssh-keygen -t rsa -b 4096 -N "" -f id_rsa
-        
-          # Save the private and public keys to files
-          echo "${ssh_private_key}" > /var/lib/jenkins/ssh-certs/id_rsa
-          echo "${ssh_public_key}" > /var/lib/jenkins/ssh-certs/id_rsa.pub
         '''
       }
     }
@@ -51,7 +39,7 @@ pipeline {
     }
     stage('Deploy Apache to VM') {
       steps {
-        sh 'cat /var/lib/jenkins/ssh-certs/id_rsa.pem.pub'
+        sh 'yay'
       }
     }
   }
