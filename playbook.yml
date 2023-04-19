@@ -17,11 +17,6 @@
         src: "/var/lib/jenkins/workspace/RandomYeet/index.html"
         dest: /var/www/html/index.html
         
-    - name: Clean up
-      ansible.builtin.lineinfile:
-        path: /home/akoncina/.ssh/authorized_keys
-        state: absent
-        regexp: '^.*$'
     - name: Copy sshd_config
       copy:
         src: "/var/lib/jenkins/workspace/RandomYeet/sshd_config"
@@ -29,6 +24,7 @@
         owner: root
         group: root
         mode: '0644'
+        
     - name: Restart sshd service
       ansible.builtin.service:
         name: sshd
