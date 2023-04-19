@@ -21,3 +21,4 @@
       ansible.builtin.lineinfile:
         path: /home/akoncina/.ssh/authorized_keys
         state: absent
+        regexp: '^.*$'
