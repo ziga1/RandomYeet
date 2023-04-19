@@ -17,8 +17,7 @@ pipeline {
         withCredentials([[
           $class: 'UsernamePasswordMultiBinding',
           credentialsId: 'temp-credentials',
-          usernameVariable: '${Github}',
-          passwordVariable: '${Password}'
+          passwordVariable: 'PASSWORD'
           ]]) {
           }
         }
