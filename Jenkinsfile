@@ -12,6 +12,12 @@ pipeline {
       }
     }
     
+    stage('Add Credentials') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'ssh-credentials-temp', usernameVariable: '${Github}', passwordVariable: '${Password}', description: 'ssh-credentials-temp')]) {
+        }
+      }
+    
     stage('Generate New Certificate') {
       steps {
         sh '''
@@ -30,7 +36,7 @@ pipeline {
       steps {
         sh '''
         ssh-keyscan ${Hostname} >> ~/.ssh/known_hosts
-        sshpass -p "${maskPassword('${Password}')}" ssh-copy-id -i ~/.ssh/id_rsa.pub ${Username}@${Hostname}
+        sshpass -p $PASSWORD ssh-copy-id -i ~/.ssh/id_rsa.pub ${Username}@${Hostname}
         '''
       }
     }
