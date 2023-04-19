@@ -17,6 +17,7 @@ pipeline {
         withCredentials([usernamePassword(credentialsId: 'ssh-credentials-temp', usernameVariable: '${Github}', passwordVariable: '${Password}', description: 'ssh-credentials-temp')]) {
         }
       }
+    }
     
     stage('Generate New Certificate') {
       steps {
