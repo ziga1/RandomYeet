@@ -14,7 +14,13 @@ pipeline {
     
     stage('Add Credentials') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'temp-credentials', usernameVariable: '${Github}', passwordVariable: '${Password}')]) {
+        withCredentials([[
+          $class: 'UsernamePasswordMultiBinding',
+          credentialsId: 'temp-credentials',
+          usernameVariable: '${Github}',
+          passwordVariable: '${Password}'
+          ]]) {
+          }
         }
       }
     }
