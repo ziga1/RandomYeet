@@ -11,30 +11,14 @@ pipeline {
         ])
       }
     }
-    stage('Delete Old Certificates') {
-      steps {
-        sh '''
-      if [ -f /var/lib/jenkins/workspace/${Github}/id_rsa ]; then
-        rm /var/lib/jenkins/workspace/${Github}/id_rsa
-      fi
-      
-      if [ -f /var/lib/jenkins/workspace/${Github}/id_rsa.pub ]; then
-        rm /var/lib/jenkins/workspace/${Github}/id_rsa.pub
-      fi
-      
-      if [ -f /var/lib/jenkins/.ssh/id_rsa.pub ]; then
-        rm /var/lib/jenkins/.ssh/id_rsa.pub
-      fi
-      
-      if [ -f /var/lib/jenkins/.ssh/id_rsa ]; then
-        rm /var/lib/jenkins/.ssh/id_rsa
-      fi
-    '''
-      }
-    }
+    
     stage('Generate New Certificate') {
       steps {
         sh '''
+        
+      if [ -f /var/lib/jenkins/.ssh/id_rsa ]; then
+        currentBuild.result = 'SUCCESS'
+      fi
           ssh-keygen -t rsa -b 4096 -N "" -f id_rsa
           mv id_rsa /var/lib/jenkins/.ssh/id_rsa
           mv id_rsa.pub /var/lib/jenkins/.ssh/id_rsa.pub
