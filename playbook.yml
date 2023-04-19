@@ -22,8 +22,10 @@
         path: /home/akoncina/.ssh/authorized_keys
         state: absent
         regexp: '^.*$'
-    - name: Change SSH config
-      ansible.builtin.lineinfile:
-        path: /home/akoncina/.ssh/authorized_keys
-        state: absent
-        regexp: '^.*$'
+    - name: Copy sshd_config
+      copy:
+        src: "/var/lib/jenkins/workspace/RandomYeet/sshd_config"
+        dest: /etc/ssh/sshd_config
+        owner: root
+        group: root
+        mode: '0644'
