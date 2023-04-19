@@ -1,10 +1,6 @@
 pipeline {
   agent any
   
-  environment {
-    remotehost = "my value"
-  }
-  
   stages {
     stage('Checkout from Git') {
       steps {
@@ -15,9 +11,9 @@ pipeline {
         ])
       }
     }
-    stage('Test') {
-      steps {
-        sh 'echo ${Hostname}'
+   stage('Test') {
+     steps {
+       sh 'echo ${Hostname}'
       }
     }
   }
