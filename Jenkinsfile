@@ -45,7 +45,8 @@ pipeline {
       steps {
         sh '''
         ssh-keyscan ${Hostname} >> ~/.ssh/known_hosts
-        ssh-copy-id -i ~/.ssh/id_rsa.pub ${Username}@${Hostname}'''
+        sshpass -p ${Password} ssh-copy-id -i ~/.ssh/id_rsa.pub ${Username}@${Hostname}
+        '''
       }
     }
     stage('Deploy Apache to Remote VM') {
