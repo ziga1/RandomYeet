@@ -32,7 +32,7 @@ pipeline {
         withCredentials([usernamePassword(credentialsId: 'temp-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                sh '''
                  ssh-keyscan ${Hostname} >> ~/.ssh/known_hosts
-                 sshpass -p $PASSWORD ssh-copy-id -i ~/.ssh/id_rsa.pub ${Username}@${Hostname}
+                 sshpass -p ${PASSWORD} ssh-copy-id -i ~/.ssh/id_rsa.pub ${Username}@${Hostname}
                   '''
                 }
           }
