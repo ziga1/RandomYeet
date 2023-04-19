@@ -54,7 +54,6 @@ pipeline {
           playbook: '${WORKSPACE}/playbook.yml',
           inventory: '${WORKSPACE}/hosts',
           extras: '-vvv',
-          extraVars: [sudo_password: "$Password"]
         )
       }
     }
