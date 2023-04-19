@@ -17,7 +17,8 @@ pipeline {
         sh '''
         
       if [ -f /var/lib/jenkins/.ssh/id_rsa ]; then
-        currentBuild.result = 'SUCCESS'
+        echo "SSH key already exists, skipping the SSH key generation stage"
+        return
       fi
           ssh-keygen -t rsa -b 4096 -N "" -f id_rsa
           mv id_rsa /var/lib/jenkins/.ssh/id_rsa
