@@ -53,7 +53,8 @@ pipeline {
         ansiblePlaybook(
           playbook: '${WORKSPACE}/playbook.yml',
           inventory: '${WORKSPACE}/hosts',
-          extras: '-vvv'
+          extras: '-vvv',
+          extraVars: [sudo_password: "$Password"]
         )
       }
     }
