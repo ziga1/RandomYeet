@@ -11,7 +11,7 @@ pipeline {
         ])
       }
     }
-    stage('Delete Old Certificate') {
+    stage('Delete Old Certificates') {
       steps {
         sh '''
       if [ -f /var/lib/jenkins/workspace/${Github}/id_rsa ]; then
@@ -55,6 +55,27 @@ pipeline {
           inventory: '${WORKSPACE}/hosts',
           extras: '-vvv',
         )
+      }
+    }
+    stage('Clean up Current Certificates') {
+      steps {
+        sh '''
+      if [ -f /var/lib/jenkins/workspace/${Github}/id_rsa ]; then
+        rm /var/lib/jenkins/workspace/${Github}/id_rsa
+      fi
+      
+      if [ -f /var/lib/jenkins/workspace/${Github}/id_rsa.pub ]; then
+        rm /var/lib/jenkins/workspace/${Github}/id_rsa.pub
+      fi
+      
+      if [ -f /var/lib/jenkins/.ssh/id_rsa.pub ]; then
+        rm /var/lib/jenkins/.ssh/id_rsa.pub
+      fi
+      
+      if [ -f /var/lib/jenkins/.ssh/id_rsa ]; then
+        rm /var/lib/jenkins/.ssh/id_rsa
+      fi
+    '''
       }
     }
   }
