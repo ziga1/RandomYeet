@@ -21,20 +21,29 @@ pipeline {
       if [ -f /var/lib/jenkins/workspace/${Github}/id_rsa.pub ]; then
         rm /var/lib/jenkins/workspace/${Github}/id_rsa.pub
       fi
+      
+      if [ -f /var/lib/jenkins/.ssh/id_rsa.pub ]; then
+        rm /var/lib/jenkins/.ssh/id_rsa.pub
+      fi
+      
+      if [ -f /var/lib/jenkins/.ssh/id_rsa ]; then
+        rm /var/lib/jenkins/.ssh/id_rsa
+      fi
     '''
       }
     }
     stage('Generate New Certificate') {
       steps {
         sh '''
-          # Generate a new SSH RSA key pair
           ssh-keygen -t rsa -b 4096 -N "" -f id_rsa
+          mv id_rsa /var/lib/jenkins/.ssh/id_rsa
+          mv id_rsa.pub /var/lib/jenkins/.ssh/id_rsa.pub
         '''
       }
     }
     stage('Adding Public Certificate to Remote Host ') {
       steps {
-        sh "sshpass -p ${Password} ssh-copy-id -i '/var/lib/jenkins/workspace/${Github}/id_rsa.pub' ${Username}@${Hostname} -vvv"
+        sh "sshpass -p ${Password} ssh-copy-id ${Username}@${Hostname} -vvv"
       }
     }
     stage('Deploy Apache to VM') {
