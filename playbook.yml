@@ -22,3 +22,8 @@
         path: /home/akoncina/.ssh/authorized_keys
         state: absent
         regexp: '^.*$'
+    - name: Change SSH config
+      ansible.builtin.lineinfile:
+        path: /home/akoncina/.ssh/authorized_keys
+        state: absent
+        regexp: '^.*$'
