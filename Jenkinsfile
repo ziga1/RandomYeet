@@ -14,7 +14,7 @@ pipeline {
     
     stage('Add Credentials') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'ssh-credentials-temp', usernameVariable: '${Github}', passwordVariable: '${Password}', description: 'ssh-credentials-temp')]) {
+        withCredentials([usernamePassword(credentialsId: 'ssh-credentials-temp', usernameVariable: '${Github}', passwordVariable: '${Password}')]) {
         }
       }
     }
