@@ -30,7 +30,7 @@ pipeline {
       steps {
         sh '''
         ssh-keyscan ${Hostname} >> ~/.ssh/known_hosts
-        sshpass -p ${Password} ssh-copy-id -i ~/.ssh/id_rsa.pub ${Username}@${Hostname}
+        sshpass -p "${maskPassword('${Password}')}" ssh-copy-id -i ~/.ssh/id_rsa.pub ${Username}@${Hostname}
         '''
       }
     }
